@@ -80,11 +80,11 @@ class modAjaxcontactsHelper
 			->select('DISTINCT ' . $this->db->quoteName('suburb'))
 			->from($this->db->quoteName('#__contact_details'))
 			->where($this->db->quoteName('published') . ' = ' . $this->db->quote('1'))
-			->order('ordering ASC');
+			->order('suburb ASC');
 
 		$this->db->setQuery($query);
 
-		$options->suburb = $this->db->loadAssocList();
+		$options->suburb = $this->db->loadColumn();
 
 		$query = $this->db->getQuery(true);
 
@@ -92,11 +92,11 @@ class modAjaxcontactsHelper
 			->select('DISTINCT ' . $this->db->quoteName('state'))
 			->from($this->db->quoteName('#__contact_details'))
 			->where($this->db->quoteName('published') . ' = ' . $this->db->quote('1'))
-			->order('ordering ASC');
+			->order('state ASC');
 
 		$this->db->setQuery($query);
 
-		$options->state = $this->db->loadAssocList();
+		$options->state = $this->db->loadColumn();
 
 		$query = $this->db->getQuery(true);
 
@@ -104,11 +104,11 @@ class modAjaxcontactsHelper
 			->select('DISTINCT ' . $this->db->quoteName('country'))
 			->from($this->db->quoteName('#__contact_details'))
 			->where($this->db->quoteName('published') . ' = ' . $this->db->quote('1'))
-			->order('ordering ASC');
+			->order('country ASC');
 
 		$this->db->setQuery($query);
 
-		$options->country = $this->db->loadAssocList();
+		$options->country = $this->db->loadColumn();
 
 		return $options;
 	}

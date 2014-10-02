@@ -18,7 +18,7 @@
 					<select name="<?php echo strtolower($groupname) ?>">
 						<option selected="selected" value="">Please Select <?php echo ucfirst($groupname) ?></option>
 						<?php foreach ($groupoptions as $option) : ?>
-							<option value="<?php echo $option[$groupname] ?>"><?php echo $option[$groupname] ?></option>
+							<option value="<?php echo $option ?>"><?php echo $option ?></option>
 						<?php endforeach ?>
 					</select>
 				</label>
