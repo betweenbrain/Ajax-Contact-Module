@@ -23,10 +23,7 @@ class modAjaxcontactsHelper
 	 */
 	public function __construct()
 	{
-		$this->app    = JFactory::getApplication();
-		$this->db     = JFactory::getDbo();
-		$this->menu   = $this->app->getMenu();
-		$this->active = $this->menu->getActive();
+		$this->db = JFactory::getDbo();
 	}
 
 	/**
@@ -70,6 +67,11 @@ class modAjaxcontactsHelper
 		return $db->loadObjectList();
 	}
 
+	/**
+	 * Method to get distinct values for the form options
+	 *
+	 * @return stdClass
+	 */
 	public function getFormOptions()
 	{
 		$options = new stdClass;
