@@ -43,27 +43,19 @@ class modAjaxcontactsHelper
 
 		$where = $db->quoteName('published') . ' = ' . $db->quote('1');
 
-		if ($input->get('category'))
+		if ($input->get('suburb'))
 		{
-			$where .= ' AND ' . $db->quoteName('catid') . ' = ' . $db->quote($input->get('category', '', 'INT'));
+			$where .= ' AND ' . $db->quoteName('suburb') . ' = ' . $db->quote($input->get('suburb'), '', 'HTML');
 		}
 
-		if ($input->get('product'))
+		if ($input->get('state'))
 		{
-			$where .= ' AND ' . $db->quoteName('params') . ' REGEXP \'"solutions":[^\]]*"' . $input->get('product', '', 'HTML') . '".*\'';
+			$where .= ' AND ' . $db->quoteName('suburb') . ' = ' . $db->quote($input->get('state'), '', 'HTML');
 		}
 
 		if ($input->get('country'))
 		{
-			$where .= ' AND ' . $db->quoteName('params') . ' REGEXP \'"country":[^\]]*"' . $input->get('country', '', 'HTML') . '".*\'';
-		}
-
-		if ($input->get('region'))
-		{
-			$where .= ' AND ('
-				. $db->quoteName('params') . ' REGEXP \'"region":[^\]]*"' . $input->get('region', '', 'HTML') . '".*\' ' .
-				'OR ' . $db->quoteName('params') . ' REGEXP \'"region":[^\]]*"all".*\'' .
-				')';
+			$where .= ' AND ' . $db->quoteName('suburb') . ' = ' . $db->quote($input->get('country'), '', 'HTML');
 		}
 
 		$query
