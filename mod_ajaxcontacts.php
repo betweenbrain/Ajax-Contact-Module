@@ -11,17 +11,8 @@
 
 require_once __DIR__ . '/helper.php';
 
-$db    = JFactory::getDbo();
-$query = $db->getQuery(true);
-$query
-	->select('title')
-	->from($db->quoteName('#__categories'))
-	->where($db->quoteName('id') . " = " . $db->quote($category));
-
-$db->setQuery($query);
-$row = $db->loadRow();
-
-$categories[$category] = $row[0];
+$helper  = new modAjaxcontactsHelper;
+$options = $helper->getFormOptions();
 
 JHtml::_('jquery.framework');
 

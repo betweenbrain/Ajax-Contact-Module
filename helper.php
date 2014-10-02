@@ -21,13 +21,12 @@ class modAjaxcontactsHelper
 	 * @since 0.1
 	 *
 	 */
-	public function __construct($params)
+	public function __construct()
 	{
 		$this->app    = JFactory::getApplication();
 		$this->db     = JFactory::getDbo();
 		$this->menu   = $this->app->getMenu();
 		$this->active = $this->menu->getActive();
-		$this->params = $params;
 	}
 
 	/**
@@ -77,5 +76,48 @@ class modAjaxcontactsHelper
 		$db->setQuery($query);
 
 		return $db->loadObjectList();
+	}
+
+	public function getFormOptions()
+	{
+		$options = new stdClass;
+
+		$query = $this->db->getQuery(true);
+
+		$query
+			->select('DISTINCT ' . $this->db->quoteName('suburb'))
+			->from($this->db->quoteName('#__contact_details'))
+			->where($this->db->quoteName('published') . ' = ' . $this->db->quote('1'))
+			->order('ordering ASC');
+
+		$this->db->setQuery($query);
+
+		$options->suburb = $this->db->loadAssocList();
+
+		$query = $this->db->getQuery(true);
+
+		$query
+			->select('DISTINCT ' . $this->db->quoteName('state'))
+			->from($this->db->quoteName('#__contact_details'))
+			->where($this->db->quoteName('published') . ' = ' . $this->db->quote('1'))
+			->order('ordering ASC');
+
+		$this->db->setQuery($query);
+
+		$options->state = $this->db->loadAssocList();
+
+		$query = $this->db->getQuery(true);
+
+		$query
+			->select('DISTINCT ' . $this->db->quoteName('country'))
+			->from($this->db->quoteName('#__contact_details'))
+			->where($this->db->quoteName('published') . ' = ' . $this->db->quote('1'))
+			->order('ordering ASC');
+
+		$this->db->setQuery($query);
+
+		$options->country = $this->db->loadAssocList();
+
+		return $options;
 	}
 }

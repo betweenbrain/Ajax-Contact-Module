@@ -13,6 +13,16 @@
 <div class="ajaxcontacts">
 	<form action="index.php?option=com_ajax&module=ajaxcontacts" method="post">
 		<fieldset>
+			<?php foreach ($options as $groupname => $groupoptions) : ?>
+				<label><?php echo ucfirst($groupname) ?>
+					<select name="<?php echo strtolower($groupname) ?>">
+						<option selected="selected" value="">Please Select <?php echo ucfirst($groupname) ?></option>
+						<?php foreach ($groupoptions as $option) : ?>
+							<option value="<?php echo $option[$groupname] ?>"><?php echo $option[$groupname] ?></option>
+						<?php endforeach ?>
+					</select>
+				</label>
+			<?php endforeach ?>
 		</fieldset>
 	</form>
 	<section class="results"></section>
