@@ -17,6 +17,5 @@ $options = $helper->getFormOptions();
 JHtml::_('jquery.framework');
 
 JFactory::getDocument()->addScript(JURI::base(true) . '/media/mod_ajaxcontacts/js/ajaxcontacts.min.js');
-JFactory::getDocument()->addStyleSheet(JURI::base(true) . '/media/mod_ajaxcontacts/css/ajaxcontacts.min.js');
 
 require(JModuleHelper::getLayoutPath('mod_ajaxcontacts'));
