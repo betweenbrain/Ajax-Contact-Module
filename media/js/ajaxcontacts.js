@@ -12,6 +12,7 @@
 	$(document).ready(function () {
 
 		$(document).on('change', '.ajaxcontacts select', function () {
+
 			var request = {
 				'option' : 'com_ajax',
 				'module' : 'ajaxcontacts',
@@ -20,6 +21,7 @@
 				'country': $('.ajaxcontacts [name=country] option:selected').val(),
 				'format' : 'json'
 			};
+
 			$.ajax({
 				type   : 'POST',
 				data   : request,
@@ -29,7 +31,7 @@
 
 					for (var i = 0; i < response.data.length; i++) {
 
-						result += '<div class="contact span12">' +
+						result += '<div class="contact span4">' +
 						'<h3>' + response.data[i].name + '</h3>' +
 						'<img src="' + response.data[i].image + '" />' +
 						'<p>Suburb: ' + response.data[i].suburb + ' <br />' +
@@ -37,6 +39,11 @@
 						'Country: ' + response.data[i].country + ' </p>';
 
 						result += '</div>';
+
+						if ( (i+1) % 3 === 0) {
+							result += '</div>' +
+							'<div class="row-fluid">';
+						}
 					}
 					result += '</div>';
 
