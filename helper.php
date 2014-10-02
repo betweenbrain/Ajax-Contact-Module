@@ -50,12 +50,12 @@ class modAjaxcontactsHelper
 
 		if ($input->get('state'))
 		{
-			$where .= ' AND ' . $db->quoteName('suburb') . ' = ' . $db->quote($input->get('state'), '', 'HTML');
+			$where .= ' AND ' . $db->quoteName('state') . ' = ' . $db->quote($input->get('state'), '', 'HTML');
 		}
 
 		if ($input->get('country'))
 		{
-			$where .= ' AND ' . $db->quoteName('suburb') . ' = ' . $db->quote($input->get('country'), '', 'HTML');
+			$where .= ' AND ' . $db->quoteName('country') . ' = ' . $db->quote($input->get('country'), '', 'HTML');
 		}
 
 		$query
