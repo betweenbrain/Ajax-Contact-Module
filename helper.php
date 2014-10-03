@@ -75,42 +75,26 @@ class modAjaxcontactsHelper
 	public function getFormOptions()
 	{
 		$options = new stdClass;
+		$columns = array(
+			'suburb',
+			'state',
+			'country'
+		);
 
-		$query = $this->db->getQuery(true);
+		foreach ($columns as $column)
+		{
+			$query = $this->db->getQuery(true);
 
-		$query
-			->select('DISTINCT ' . $this->db->quoteName('suburb'))
-			->from($this->db->quoteName('#__contact_details'))
-			->where($this->db->quoteName('published') . ' = ' . $this->db->quote('1'))
-			->order('suburb ASC');
+			$query
+				->select('DISTINCT ' . $this->db->quoteName($column))
+				->from($this->db->quoteName('#__contact_details'))
+				->where($this->db->quoteName('published') . ' = ' . $this->db->quote('1'))
+				->order($column . ' ASC');
 
-		$this->db->setQuery($query);
+			$this->db->setQuery($query);
 
-		$options->suburb = $this->db->loadColumn();
-
-		$query = $this->db->getQuery(true);
-
-		$query
-			->select('DISTINCT ' . $this->db->quoteName('state'))
-			->from($this->db->quoteName('#__contact_details'))
-			->where($this->db->quoteName('published') . ' = ' . $this->db->quote('1'))
-			->order('state ASC');
-
-		$this->db->setQuery($query);
-
-		$options->state = $this->db->loadColumn();
-
-		$query = $this->db->getQuery(true);
-
-		$query
-			->select('DISTINCT ' . $this->db->quoteName('country'))
-			->from($this->db->quoteName('#__contact_details'))
-			->where($this->db->quoteName('published') . ' = ' . $this->db->quote('1'))
-			->order('country ASC');
-
-		$this->db->setQuery($query);
-
-		$options->country = $this->db->loadColumn();
+			$options->$column = $this->db->loadColumn();
+		}
 
 		return $options;
 	}
